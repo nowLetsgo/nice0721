@@ -3,7 +3,12 @@ async function async1() {
     console.log('1');
     await async2();
     console.log('2')
+    process.nextTick(() => {
+        console.log(9)
+    })
+
 }
+
 async function async2() {
     console.log('3')
 }
@@ -22,3 +27,6 @@ new Promise((resolve) => {
     console.log('7')
 });
 console.log('8')
+process.nextTick(() => {
+    console.log(9)
+})
