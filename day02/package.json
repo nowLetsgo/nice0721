@@ -1,0 +1,13 @@
+{
+  "name": "day02",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^4.5.2",
+    "jquery": "^3.5.1"
+  },
+  "devDependencies": {
+    "zepto": "^1.2.0"
+  }
+}
