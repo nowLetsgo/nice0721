@@ -11,7 +11,7 @@
 
 const buf1 = Buffer.alloc(10, "atguigu");
 //在内存中开辟一块干净的区域，长度固定，如果没有填充内容，则区域保存的都是0  
-//打印显示的时候 显示的是二进制数据
+//打印显示的时候 显示的是十六进制数据
 console.log(buf1) //<Buffer 61 74 67 75 69 67 75 61 74 67>
 console.log(buf1.toString()); //将buffer数据转换出来
 
