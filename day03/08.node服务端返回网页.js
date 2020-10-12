@@ -17,8 +17,9 @@ const server = http.createServer((request, response) => {
     //在返回相应之前，需要设置响应头中的数据格式
     response.setHeader("Content-Type", "text/html;charset=utf-8")
     //返回相应
-    rs.pipe(response);
+    // rs.pipe(response);
     // response.end(str);
+    response.end("<h1>湖人总冠军</h1>");
 })
 
 //启动服务 使用listen方法，三个参数：端口号，主机地址/域名地址，回调函数
