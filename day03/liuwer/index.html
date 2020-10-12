@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>liuwer结构</title>
+    <style>
+        /*简易版的样式重置*/
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+        .head_outer{
+            width: 100%;
+            border-bottom: 4px solid #23b0e8;
+        }
+        .head{
+            width: 1000px;
+            margin: 0 auto;
+            /*如果有结构撑开，不建议书写高度*/
+            /*height: 100px;*/
+            /*background-color: red;*/
+
+            padding-top: 15px;
+        }
+
+        .nav{
+            width: 1000px;
+            margin: 0 auto;
+            height: 40px;
+            line-height: 40px;
+        }
+        .nav>a{
+            color: #000;
+            text-decoration: none;
+        }
+
+        .bigimg{
+            height: 350px;
+            background: url("./images/bg.jpg") center center no-repeat;
+        }
+
+        .content{
+            width: 1000px;
+            margin: 0 auto;
+            height: 400px;
+            background-color: gold;
+        }
+
+        .foot_outer{
+            width: 100%;
+            background-color: #5c432a;
+        }
+        .foot{
+            width: 1000px;
+            height: 100px;
+            margin: 0 auto;
+            background-color: pink;
+        }
+
+        .clearFix:after{
+            content:"\200B";
+            height: 0;
+            display: block;
+            clear: both;
+        }
+        .head_top a,.head_top input{
+            float: right;
+        }
+        .head_top .head_top_search{
+            width: 26px;
+            height: 26px;
+            border: 1px solid #3c3c3c;
+            border-left: none;
+            border-radius: 0 5px 5px 0;
+            background: url("./images/search.png") center center no-repeat;
+        }
+        .head_top .head_top_ipt{
+            width: 152px;
+            height: 26px;
+            border: 1px solid #3c3c3c;
+        }
+        .head_top .head_top_boot{
+            font-size: 14px;
+            color: #3c3c3c;
+            height: 28px;
+            line-height: 28px;
+            margin: 0 15px 0px 7px;
+        }
+        .head_top{
+            overflow: hidden;
+        }
+        .head_top .head_top_bootnum{
+            width: 25px;
+            height: 19px;
+            padding-top: 5px;
+            background: url("./images/boot.png") center center no-repeat;
+            color: #fff;
+            font-size: 12px;
+            text-align: center;
+            line-height: 19px;
+            margin-top: 1px;
+        }
+        .head_top_register{
+            width: 60px;
+            height: 19px;
+            text-align: center;
+            line-height: 19px;
+            margin-top: 5px;
+            margin-right: 15px;
+            border-left:2px solid #3c3c3c;
+            border-right:2px solid #3c3c3c;
+            color:#3c3c3c;
+        }
+        .head_top_login{
+            width: 60px;
+            height: 19px;
+            text-align: center;
+            line-height: 19px;
+            margin-top: 5px;
+            color:#3c3c3c;
+            position: relative;
+        }
+        .head_top_login:before{
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 19px;
+            background-color: #3c3c3c;
+            left: -4px;
+            /*top: 4px;*/
+        }
+
+        .content_title{
+            height: 98px;
+            line-height: 98px;
+            text-align: center;
+        }
+        .content_title span{
+            display: inline-block;
+            height: 38px;
+            line-height: 38px;
+            color: #cc0000;
+            font-size: 20px;
+            background: url("./images/li.png") left center no-repeat;
+            padding-left: 50px;
+        }
+
+        .head_bottom{
+            margin-top: -24px;
+        }
+        .head_bottom h1{
+            display: inline-block;
+        }
+        .head_bottom h1 img{
+            display: block;
+        }
+        .head_bottom a{
+            color: #3c3c3c;
+            font-weight: bold;
+            margin-right: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <!--头部-->
+        <div class="head_outer">
+            <div class="head">
+                <div class="head_top clearFix">
+                    <a href="###" class="head_top_search"></a>
+                    <input type="text" class="head_top_ipt">
+                    <a href="###" class="head_top_boot">行李箱</a>
+                    <a href="###" class="head_top_bootnum">12</a>
+                    <a href="###" class="head_top_register">注册</a>
+                    <a href="###" class="head_top_login">登录</a>
+                    <a href="###" class="head_top_tel"></a>
+                </div>
+                <div class="head_bottom">
+                    <h1><img src="./images/06.png" width="132" height="90" alt=""></h1>
+                    <a href="###">第一次</a>
+                    <a href="###">目的地</a>
+                    <a href="###">目的地</a>
+                    <a href="###">目的地</a>
+                    <a href="###">目的地</a>
+                    <a href="###">目的地</a>
+                    <a href="###">目的地</a>
+                </div>
+            </div>
+        </div>
+        <!--导航区域-->
+        <div class="nav">
+            <a href="###">首页</a>
+            &gt;
+            伴手礼
+        </div>
+        <!--大图区域-->
+        <div class="bigimg"></div>
+        <!-- 内容区域-->
+        <div class="content">
+            <h2 class="content_title"><span>伴手礼</span></h2>
+        </div>
+        <!--底部区域-->
+        <div class="foot_outer">
+            <div class="foot"></div>
+        </div>
+    </div>
+</body>
+</html>
