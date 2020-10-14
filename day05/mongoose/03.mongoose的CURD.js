@@ -48,18 +48,65 @@ const teacherSchema = new mongoose.Schema({
 //创建model对象（teacher集合），并传入约束
 const Teacher = mongoose.model("teacher", teacherSchema);
 
-//创建document对象（创建文档）
-//实例化model对象，并传入初始值
-new Teacher({
-    name: "赵四",
-    age: "21",
-    sex: "女",
-    hobby: ["喝酒", "烫头"],
+/* 
+    create：创建操作
+        - create方法第一个参数是一个对象（添加一条数据的时候）或一个数组（当添加多条数据的时候），第二个参数是回调函数
+        - 当前create方法也可以返回promise对象，就可以不用书写回调函数了
+
+*/
+/* Teacher.create({
+    name: "王八",
+    age: "22",
+    sex: "男",
+    hobby: ["写代码", "洗头发"],
     createTime: Date.now()
-}).save((err) => {
+}, (err) => {
     if (err) {
-        console.log("初始化文档错误" + err);
+        console.log(err);
         return;
     }
-    console.log("初始化文档成功")
+    console.log("添加文档成功")
+
+}) */
+/* 
+const result = Teacher.create([{
+        name: "李二",
+        age: "24",
+        sex: "女",
+        hobby: ["吃饭", "扫地"],
+        createTime: Date.now()
+    },
+    {
+        name: "李三",
+        age: "5",
+        sex: "男",
+        hobby: ["拖地", "洗碗"],
+        createTime: Date.now()
+    }
+])
+
+console.log(result);
+result.then((value) => {
+    console.log(value) //添加成功以后，value就是添加的数据
+}).catch((err) => {
+    console.log(err);
+}) */
+
+
+
+/* 
+    find查找：
+        find方法返回一个promise对象，promise对象中的值就是查找到的值
+
+
+*/
+const result = Teacher.find({
+    age: {
+        $lt: 20
+    }
+})
+result.then((value) => {
+    console.log(value);
+}).catch((err) => {
+    console.log(err)
 })
