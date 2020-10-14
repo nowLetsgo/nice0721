@@ -36,6 +36,9 @@ db.students.find({$or:[{age:{$gt:18}},{sex:"男"}]})
 //查找年龄是18岁的和20岁的  方法1
 db.students.find({$or:[{age:18},{age:20}]})
 
+//查找年龄大于20岁和小于30岁的
+db.students.find({$and:[{age:{$gt:20}},{age:{$lt:30}}]})
+
 //查找年龄是18岁的和20岁的  方法2
 db.students.find({age:{$in:[18,20]}})
 
