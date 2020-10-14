@@ -100,11 +100,42 @@ result.then((value) => {
 
 
 */
-const result = Teacher.find({
+/* const result = Teacher.find({
     age: {
         $lt: 20
     }
 })
+result.then((value) => {
+    console.log(value);
+}).catch((err) => {
+    console.log(err)
+}) */
+
+
+/* 
+    update--改
+
+*/
+
+/* const result = Teacher.updateMany({}, {
+    $inc: {
+        age: 1
+    }
+})
+result.then((value) => {
+    console.log(value);
+}).catch((err) => {
+    console.log(err)
+}) */
+
+
+/* 
+    delete:删除
+
+*/
+const result = Teacher.deleteOne({
+    name: "王八"
+});
 result.then((value) => {
     console.log(value);
 }).catch((err) => {
