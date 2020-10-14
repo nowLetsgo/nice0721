@@ -8,6 +8,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/atguigu", {
     useUnifiedTopology: true
 });
 
+//对mongoose对象的connection对象绑定事件，当数据库连接的时候会触发open事件
 mongoose.connection.once("open", (err) => {
     if (err) {
         console.log(err);
