@@ -1,4 +1,7 @@
 const express = require("express");
+const {
+    resolve
+} = require("path");
 
 //引入mongoose模块
 const mongoose = require("mongoose")
@@ -50,13 +53,57 @@ app.get("/register", async (req, res) => {
     //3.保存在数据库
     const saveResult = await userInfo.create({
         user,
-        pass: pass[0]
+        pass
     })
     console.log(saveResult);
 
-    res.send("注册成功");
+    //4.返回相应
+    // res.send("注册成功");
+    //注册成功后直接跳转登录页面
+    res.sendFile(resolve(__dirname, "./login.html"))
 })
 
+//登录的接口
+app.get("/login", async (req, res) => {
+    /* 
+        1.获取用户的数据
+        2.判断是否存在当前用户名
+        3.判断密码是否正确
+        4.返回成功相应
+    */
+
+    // 1. 获取用户的数据
+    console.log(req.query);
+    const {
+        user,
+        pass
+    } = req.query;
+
+    //2.判断用户名是否存在
+    const isHasUser = await userInfo.findOne({
+        user
+    });
+    console.log(isHasUser);
+    if (!isHasUser) return res.send("用户名不存在");
+
+    //3.判断密码是否正确
+    //isHasUser其中已经包含的密码
+    if (isHasUser.pass === pass) {
+        res.send("登录成功")
+    } else {
+        res.send("密码错误")
+    }
+})
+
+
+app.get("/register.html", async (req, res) => {
+    res.sendFile(resolve(__dirname, "./register.html"))
+})
+app.get("/login.html", async (req, res) => {
+    res.sendFile(resolve(__dirname, "./login.html"))
+})
+
+//启动服务
 app.listen(3000, (err) => {
     if (err) {
         console.log("服务器启动错误" + err);
