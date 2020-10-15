@@ -1,6 +1,6 @@
 const express = require("express");
 const {
-    resolve
+    resolve 
 } = require("path");
 
 //创建application对象
