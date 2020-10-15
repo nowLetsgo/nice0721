@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const str = 'j2hk23ksa';
+
+        //检测有没有3个连着的数字
+        const reg1 = /[0-9]{3}/g;
+        //检测有没有数字
+        const reg2 = /\d/g;
+
+        //exec方法返回检测到元素的相关信息，是一个数组，每次只能检测一个，后边调用会依次检测
+        console.log(reg2.exec(str)); //["2", index: 1, input: "j2hk23ksa", groups: undefined]
+        console.log(reg2.exec(str));
+        console.log(reg2.exec(str));
+        console.log(reg2.exec(str)); //null
+    </script>
+</body>
+
+</html>

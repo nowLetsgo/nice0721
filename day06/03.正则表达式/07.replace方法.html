@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <textarea>
+
+    </textarea>
+    <script>
+        /* const str = 'j2hk23k1sa';
+
+        const reg1 = /[0-9]/g;
+
+        console.log(str.replace(reg1, "*")) */
+
+        const oTextarea = document.querySelector("textarea");
+        oTextarea.onchange = function () {
+            let textStr = this.value;
+
+            const reg = /傻逼|憨狗子|憨憨|fuck|TMD/gi;
+            // let newStr = textStr.replace(reg, "**")
+            let newStr = textStr.replace(reg, (v) => {
+                // console.log(v);
+                let str = "";
+                for (var i = 0; i < v.length; i++) {
+                    str += "*";
+                }
+                return str;
+            })
+            this.value = newStr;
+        }
+    </script>
+</body>
+
+</html>

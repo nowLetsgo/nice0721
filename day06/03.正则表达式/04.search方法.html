@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const str = '1j2hk23ksa';
+
+        const reg1 = /[0-9]/g;
+
+        //search方法是 字符串的方法,和indexOf类似
+        //返回第一个匹配到字符串的下标，如果没有则返回-1
+        //indexOf不能使用正则
+        //如果indexOf和search都能使用的情况下，推荐使用indexOf，因为indexOf更底层
+
+        console.log(str.search(reg1))
+        console.log(str.indexOf(reg1))
+    </script>
+</body>
+
+</html>
