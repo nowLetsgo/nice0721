@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <textarea>
+
+    </textarea>
+    <script>
+        //[a-z]:所有的小写字母
+        //[A-Z]:所有的大写字母
+        //[A-Za-z]:所有的字母 无论大小写
+        //[xyz]:只匹配xyz
+        //[0-9]:只匹配数字
+        //[0-9a-zA-Z]:只匹配数字字母
+        //[0-9a]:只匹配所有数字和a
+        //[^a-z]:除了小写字母  全部都匹配
+        const reg1 = /[a-z]/gi;
+
+
+        // 转义字符
+        // . 匹配任意一个字符 除了换行符
+        // \d 所有的数字
+        // \D 除了数字都可以
+        // \s 匹配空白字符
+        // \S 匹配非空白字符
+        // \w 匹配数字字母下划线
+        // \W 匹配非数字字母下划线
+        // \b 单词边界
+        const reg2 = /./g;
+
+        const str = "hd2@z234k*&^kxz23"
+        const reg3 = /\^\D/g;
+        console.log(str.match(reg3))
+
+        const reg4 = /[\u4E00-\u9FA5]/;
+    </script>
+</body>
+
+</html>

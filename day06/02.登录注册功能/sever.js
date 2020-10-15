@@ -34,7 +34,7 @@ app.get("/register", async (req, res) => {
         pass
     } = req.query;
     console.log(user, pass)
-
+    
     // 2.判断是否已经注册
     //find返回的是一个数组，findOne返回的是查找的对象
     //find查找不到返回空数组  findOne查找不到 返回null
