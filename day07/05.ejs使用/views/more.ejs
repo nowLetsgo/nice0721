@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        <%    %>写j书s语句
+        <%=   %> 解析变量  没有解析标签
+        <%-   %> 解析变量  解析了标签
+     -->
+    <% user.forEach((item)=>{ %>
+    <p>我的姓名是：<%=  item.name  %> </p>
+    <p>我的年龄是：<%-  item.age  %> </p>
+    <% }) %>
+
+</body>
+
+</html>
