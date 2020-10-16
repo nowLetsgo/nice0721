@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+</head>
+
+<body>
+    <form action="http://127.0.0.1:3000/register" method="POST">
+        <div>
+            <label>
+                请输入用户名:
+                <input type="text" name="user">
+                <%= errMes %>
+            </label>
+        </div>
+        <div>
+            <label>
+                请输入密码:
+                <input type="password" name="pass">
+                <%= errPassMes %>
+            </label>
+        </div>
+        <div>
+            <label>
+                请再次输入密码:
+                <input type="password">
+            </label>
+        </div>
+        <button>注册</button>
+
+    </form>
+
+    <script>
+        const oForm = document.querySelector("form");
+        const oButton = document.querySelector("button");
+        const oPasss = document.querySelectorAll("form input[type=password]");
+
+        oForm.onsubmit = function () {
+            if (oPasss[0].value != oPasss[1].value) {
+                alert("两次密码不一致");
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>
