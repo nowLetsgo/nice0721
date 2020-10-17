@@ -1,0 +1,76 @@
+<mxfile host="65bd71144e" modified="2020-10-17T02:48:08.541Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.50.1 Chrome/83.0.4103.122 Electron/9.2.1 Safari/537.36" version="13.6.5" etag="eKhplhrfYZTBg3ldrb9C">
+    <diagram id="fbZJ7NHgQw5t22T3Jmpv" name="第 1 页">
+        <mxGraphModel dx="976" dy="512" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="70" width="280" height="460" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="720" y="70" width="280" height="460" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="客户端" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+                    <mxGeometry x="135" y="30" width="50" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="服务端" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+                    <mxGeometry x="835" y="30" width="50" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="" style="endArrow=classic;html=1;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="320" y="120" as="sourcePoint"/>
+                        <mxPoint x="710" y="120" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="8" value="1.客户端向服务端发送一个请求,请求相应的资源" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+                    <mxGeometry x="370" y="90" width="270" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="" style="endArrow=classic;html=1;exitX=-0.018;exitY=0.35;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.35;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="4" target="2">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="320" y="260" as="sourcePoint"/>
+                        <mxPoint x="370" y="210" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="10" value="2.服务端向客户端发送响应,在响应头中携带两个关于缓存的内容&lt;br&gt;分别是式文件的唯一标识(eTag'),文件最后一次的修改时间(last-modified)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="195" width="400" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="3.客户端接收到响应的eTag和last-modified,并且保存&lt;br&gt;在客户端,但是改名了&lt;br&gt;把eTag改名位if-none-match&lt;br&gt;把last-modified改名为if-modified-since" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="150" width="290" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="" style="endArrow=classic;html=1;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="320" y="360" as="sourcePoint"/>
+                        <mxPoint x="710" y="360" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="13" value="4.客户端第二次请求服务端,请求指定的资源,在请求头上会携带两个字段&lt;br&gt;分别是if-none-match 和 if-modified-since" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+                    <mxGeometry x="305" y="315" width="390" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="5.服务端接受到客户端的发送的if-none-match&lt;br&gt;和 if-modified-since,和自己的重新获当前文件的&lt;br&gt;eTag和last-modifined进行比较&lt;br&gt;如果两个都相同,则读取缓存&lt;br&gt;如果有一个不同,则返回新的响应" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+                    <mxGeometry x="730" y="300" width="270" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="" style="endArrow=classic;html=1;entryX=1.004;entryY=0.854;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="2">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="710" y="463" as="sourcePoint"/>
+                        <mxPoint x="720" y="410" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="16" value="6.如果走缓存,则服务端的响应状态码应该是304,并且不需要设置响应内容" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+                    <mxGeometry x="315" y="425" width="400" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="7.如果走缓存,则接收到的状态码是304,则直接读取缓存" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+                    <mxGeometry x="35" y="360" width="300" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="" style="endArrow=classic;html=1;entryX=1.004;entryY=0.854;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="714.44" y="510.15999999999997" as="sourcePoint"/>
+                        <mxPoint x="325.5599999999999" y="509.9999999999999" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="21" value="8.如果不走缓存,则响应状态码是200,并且返回新的资源&lt;br&gt;还要再返回最新的eTag和last-modified" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+                    <mxGeometry x="380" y="525" width="300" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
