@@ -1,6 +1,7 @@
 const express = require("express");
 const eTag = require("etag");
-
+const zlib = require("zlib");
+const open = require("./util/open")
 
 //可以改造异步方法 返回promise对象
 const {
@@ -26,14 +27,48 @@ app.get("/js/index.js", (req, res) => {
     const filePath = resolve(__dirname, "./public/js/index.js")
     const rs = fs.createReadStream(filePath)
 
-
     //设置强制缓存 http1.1
     res.set("cache-control", "max-age=10");
     //设置强制缓存 http1.0
     res.set("expires", new Date(Date.now() + 1000 * 3600).toGMTString())
 
-
     res.set("Content-Type", "application/javascript;charset=utf-8")
+
+    //通过请求头 获取客户端支持的压缩格式
+    const acceptEncoding = req.headers['accept-encoding'];
+    console.log(acceptEncoding);
+
+    //支持gzip压缩
+    if (acceptEncoding.includes("gzip")) {
+        //创建一个新的gzip压缩格式 并把流式读取的文件写入
+        const fileGzip = rs.pipe(zlib.createGzip());
+        //在响应头中添加 一个压缩格式
+        res.set("Content-Encoding", "gzip");
+        //响应压缩后的文件
+        fileGzip.pipe(res);
+        return;
+    }
+    //支持br压缩
+    if (acceptEncoding.includes("br")) {
+        //创建一个新的gzip压缩格式 并把流式读取的文件写入
+        const fileBr = rs.pipe(zlib.createBrotliCompress());
+        //在响应头中添加 一个压缩格式
+        res.set("Content-Encoding", "br");
+        //响应压缩后的文件
+        fileBr.pipe(res);
+        return;
+    }
+    //支持gzip压缩
+    if (acceptEncoding.includes("deflate")) {
+        //创建一个新的gzip压缩格式 并把流式读取的文件写入
+        const fileDeflate = rs.pipe(zlib.createDeflate());
+        //在响应头中添加 一个压缩格式
+        res.set("Content-Encoding", "deflate");
+        //响应压缩后的文件
+        fileDeflate.pipe(res);
+        return;
+    }
+
     rs.pipe(res);
 })
 
@@ -78,5 +113,6 @@ app.listen(3000, (err) => {
         console.log("服务器启动错误" + err);
         return;
     }
-    console.log("服务器启动成功 http://127.0.0.1:3000")
+    console.log("服务器启动成功 http://127.0.0.1:3000");
+    open("http://127.0.0.1:3000");
 })
