@@ -58,7 +58,7 @@ app.get("/js/index.js", (req, res) => {
         fileBr.pipe(res);
         return;
     }
-    //支持gzip压缩
+    //支持deflate压缩
     if (acceptEncoding.includes("deflate")) {
         //创建一个新的gzip压缩格式 并把流式读取的文件写入
         const fileDeflate = rs.pipe(zlib.createDeflate());
