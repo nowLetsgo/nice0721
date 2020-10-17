@@ -1,4 +1,11 @@
 const express = require("express");
+const eTag = require("etag");
+
+//可以改造异步方法 返回promise对象
+const {
+    promisify
+} = require("util");
+
 const {
     resolve
 } = require("path");
@@ -25,6 +32,40 @@ app.get("/js/index.js", (req, res) => {
     res.set("expires", new Date(Date.now() + 1000 * 3600).toGMTString())
 
     res.set("Content-Type", "application/javascript;charset=utf-8")
+    rs.pipe(res);
+})
+
+
+app.get("/css/index.css", async (req, res) => {
+    const filePath = resolve(__dirname, "./public/css/index.css")
+
+    //fs.stat可以读取到文件的所有详细信息 是一个Stats对象
+    const stat = promisify(fs.stat); //把fs.stat方法 转换成返回promise对象的方法
+    //等待stat方法 去读取文件的详细信息 并返回出来
+    const fileStat = await stat(filePath);
+
+    //获取请求时候携带的文件唯一标识 和 文件最后修改时间
+    const ifNoneMatch = req.headers["if-none-match"];
+    const ifModifiedSince = req.headers["if-modified-since"];
+
+    //获取文件的最后一次修改时间 并转换位时间对象字符串
+    const lastModified = new Date(fileStat.mtime).toGMTString();
+    //获取文件的唯一标识
+    const fileEtag = eTag(fileStat);
+    // console.log(lastModified, fileEtag)
+
+    if (ifNoneMatch === fileEtag && ifModifiedSince === lastModified) {
+        //当比对完成并都相等的时候  返回响应读取缓存
+        res.status(304).end();
+        return;
+    }
+
+    //只要协商缓存不相等  则重新设置最新的响应头 并返回新的响应
+    res.set("eTag", fileEtag);
+    res.set("last-modified", lastModified);
+
+    const rs = fs.createReadStream(filePath)
+    res.set("Content-Type", "text/css;charset=utf-8")
     rs.pipe(res);
 })
 
