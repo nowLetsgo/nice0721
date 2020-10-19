@@ -22,7 +22,7 @@ app.get("/userinfo", (req, res) => {
         age: 21
     })
 })
-app.post("/userinfo1", (req, res) => {
+app.post("/userinfo", (req, res) => {
     //得到post请求的请求体
     console.log(req.body);
 

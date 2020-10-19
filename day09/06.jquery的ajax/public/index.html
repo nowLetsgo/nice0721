@@ -19,7 +19,7 @@
     <script>
         $(function () {
             $("form").submit(function () {
-                $.ajax({
+                /* $.ajax({
                     type: "get",
                     // url: "/userinfo",
                     url: `/userinfo?userid=${$("#user").val()}`,
@@ -32,7 +32,46 @@
                     error(err) {
                         console.log(err);
                     }
-                })
+                }) */
+
+
+
+                /* $.ajax({
+                    type: "post",
+                    url: "/userinfo",
+                    // data: `userid=${$("#user").val()}`,
+                    headers: {
+                        // "Content-Type": "application/x-www-form-urlencoded;charset=utf-8"
+                        "Content-Type": "application/json;charset=utf-8"
+                    },
+                    // data: {
+                    //     userid: $("#user").val()
+                    // },
+                    data: JSON.stringify({
+                        userid: $("#user").val()
+                    }),
+                    success(data) {
+                        console.log(data);
+                    },
+                    error(err) {
+                        console.log(err);
+                    }
+                }) */
+
+
+
+                /* $.get("/userinfo", {
+                    name: "laowang",
+                    age: 18
+                }, function (data) {
+                    console.log(data);
+                }) */
+
+
+
+                // $.post("/userinfo",{name:"post"}, function (data) {
+                //     console.log(data);
+                // })
 
                 return false;
             })
