@@ -10,17 +10,48 @@
 <body>
     <form action="###">
         请输入要查询的数据
-        <input type="text" name="userid">
+        <input type="text" name="userid" id="user">
         <br>
         <button id="btn">查询</button>
     </form>
     <script>
         const oBtn = document.querySelector("#btn");
         const oForm = document.querySelector("form");
-
+        const oUser = document.querySelector("#user")
         oForm.onsubmit = function () {
             console.log("...发送ajax请求");
 
+            //1.ajax请求依赖XMLHttpRequest对象 需要实例化这个对象
+            const xhr = new XMLHttpRequest();
+            //2.打开路径 建立连接
+            //open方法三个参数：请求方式，请求地址，同步or异步(true)
+            //如果当前静态文件和请求的资源在同一个服务器下（比如都在http://127.0.0.1），那么可以直接书写请求接口路径
+            xhr.open("GET", `/userinfo?userid=${oUser.value}`, true);
+            //3.发送请求
+            //使用send方法，如果是get请求，则请求的数据放在url上，如果是post请求，则请求数据放在send中
+            xhr.send();
+            //4.只要ajax的请求状态发生变化，就会自动的触发 onreadystatechange事件
+            xhr.onreadystatechange = function () {
+                /* 
+                    readState:ajax请求状态码
+                        0:初始化状态
+                        1:open方法打开路径，但是还没有调用send发送请求
+                        2:send方法调用，并接收了部分响应信息：响应首行和响应头（比如响应状态码）
+                        3:代表接受了部分响应体（当响应体比较大的时候）
+                        4:代表响应体接受完毕，请求结束
+                */
+                // console.log(xhr.readyState); 
+                //只要请求状态码(xhr.readyState)变成了4  并且 响应状态码（xhr.status）变成了2XX 说明请求成功
+                if (xhr.readyState === 4 && (xhr.status > 199 && xhr.status < 300)) {
+                    console.log("请求成功 数据接受成功")
+                    //xhr.responseXML:用来接受xml格式的响应
+                    //xhr.responseText:用来接受json 文本等响应
+
+                    //因为前后端传输只能传输字符串，所以接受的json对象是一个json字符串，需要转换才可以使用
+                    console.log(JSON.parse(xhr.responseText));
+
+                }
+            }
 
             //阻止默认事件  阻止表单提交 而是使用ajax提交
             return false;
