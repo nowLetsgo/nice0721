@@ -26,7 +26,8 @@
             //2.打开路径 建立连接
             //open方法三个参数：请求方式，请求地址，同步or异步(true)
             //如果当前静态文件和请求的资源在同一个服务器下（比如都在http://127.0.0.1），那么可以直接书写请求接口路径
-            xhr.open("GET", `/userinfo?userid=${oUser.value}`, true);
+            //当请求地址没有发生变化，并且是get请求的时候，在IE中，第二次以后请求会读取缓存，无论服务器是否发生改变，为了解决这个问题，可以在请求地址后拼接一个时间戳，永远不会重复
+            xhr.open("GET", `/userinfo?userid=${oUser.value}&_t=${Date.now()}`, true);
             //3.发送请求
             //使用send方法，如果是get请求，则请求的数据放在url上，如果是post请求，则请求数据放在send中
             xhr.send();

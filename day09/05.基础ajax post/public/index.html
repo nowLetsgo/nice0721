@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="###">
+        请输入要查询的数据
+        <input type="text" name="userid" id="user">
+        <br>
+        <button id="btn">查询</button>
+    </form>
+    <script>
+        const oBtn = document.querySelector("#btn");
+        const oForm = document.querySelector("form");
+        const oUser = document.querySelector("#user")
+        oForm.onsubmit = function () {
+            //post请求
+            const xhr = new XMLHttpRequest();
+            //post不会读取缓存 并且请求体书写在send中发送 
+            xhr.open("POST", `/userinfo1`, true);
+
+
+            //send中可以书写 urlencode编码
+            /* xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+            xhr.send(`userid=${oUser.value}&pass=123`); */
+
+
+            //send中可以书写
+            xhr.setRequestHeader("Content-Type", "application/json")
+            xhr.send(JSON.stringify({
+                userid: oUser.value,
+                pass: 123
+            }))
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && (xhr.status > 199 && xhr.status < 300)) {
+                    console.log("请求成功 数据接受成功")
+                    console.log(JSON.parse(xhr.responseText));
+                }
+            }
+
+            //阻止默认事件  阻止表单提交 而是使用ajax提交
+            return false;
+        }
+    </script>
+</body>
+
+</html>
