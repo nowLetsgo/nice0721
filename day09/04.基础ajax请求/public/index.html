@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="###">
+        请输入要查询的数据
+        <input type="text" name="userid">
+        <br>
+        <button id="btn">查询</button>
+    </form>
+    <script>
+        const oBtn = document.querySelector("#btn");
+        const oForm = document.querySelector("form");
+
+        oForm.onsubmit = function () {
+            console.log("...发送ajax请求");
+
+
+            //阻止默认事件  阻止表单提交 而是使用ajax提交
+            return false;
+        }
+    </script>
+</body>
+
+</html>

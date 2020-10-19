@@ -1,0 +1,32 @@
+{
+    "teacher":[
+        {
+            "name":"海静",
+            "sex":"nan",
+            "age":40,
+            "hobby":"啥都行"
+        },
+        {
+            "name":"海静",
+            "sex":"nan",
+            "age":40,
+            "hobby":"啥都行"
+        },
+        {
+            "name":"海静",
+            "sex":"nan",
+            "age":40,
+            "hobby":"啥都行"
+        },
+        {
+            "name":"海静",
+            "sex":"nan",
+            "age":40,
+            "hobby":"啥都行"
+        }
+    ],
+    "student":[
+
+    ]
+
+}
