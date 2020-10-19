@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.2.4/jquery.js"></script>
+</head>
+
+<body>
+    <form action="###">
+        请输入要查询的数据
+        <input type="text" name="userid" id="user">
+        <br>
+        <button id="btn">查询</button>
+    </form>
+
+    <script>
+        $(function () {
+            $("form").submit(function () {
+                $.ajax({
+                    type: "get",
+                    // url: "/userinfo",
+                    url: `/userinfo?userid=${$("#user").val()}`,
+                    // data: `userid=${$("#user").val()}`,
+                    // data: {userid:$("#user").val()},
+                    cache: false,
+                    success(data) {
+                        console.log(data);
+                    },
+                    error(err) {
+                        console.log(err);
+                    }
+                })
+
+                return false;
+            })
+        })
+    </script>
+</body>
+
+</html>
