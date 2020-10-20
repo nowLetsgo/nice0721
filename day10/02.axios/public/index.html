@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <button id="btn">发送</button>
+    <script>
+        const oBtn = document.getElementById("btn");
+        oBtn.onclick = function () {
+            /* // 为给定 ID 的 user 创建请求
+            axios.get('/user?ID=12345')
+                .then(function (response) {
+                    console.log(response);
+
+                    // response.data：返回的数据
+                    // response.headers:响应头
+                    // response.status：状态码
+                    // response.statusText:状态信息
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                }); */
+
+
+            /* //get请求，如果查询字符串写在外边  需要配置在第二个参数对象中，params：{}
+            axios.get('/user', {
+                    params: {
+                        ID: 12345
+                    }
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                }); */
+
+
+            /* axios.post('/user', {
+                    firstName: 'Fred',
+                    lastName: 'Flintstone'
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                }); */
+
+
+            // 发送 POST 请求
+            /* axios({
+                method: 'post',
+                url: '/user',
+                data: {
+                    firstName: '111',
+                    lastName: '222'
+                }
+            }).then((data) => {
+                console.log(data);
+            }) */
+
+
+            /* axios({
+                method: 'get',
+                url: '/user',
+                params: {
+                    firstName: '111',
+                    lastName: '222'
+                }
+            }).then((data) => {
+                console.log(data);
+            }) */
+        }
+    </script>
+</body>
+
+</html>

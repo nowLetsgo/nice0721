@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <button id="btn">发送</button>
+    <script>
+        const oBtn = document.getElementById("btn");
+        oBtn.onclick = function () {
+            //jsonp的回调函数 一定是一个全局函数，否则jsonp的script标签执行的时候找不到这个函数
+            window.fn = function (data) {
+                console.log(data);
+            }
+
+            //script标签的src属性可以进行跨域请求，所以我们使用script标签的src进行请求
+            //创建一个script标签
+            const script = document.createElement("script");
+            //书写请求地址 把函数名发送过去 也可以发送其他的数据
+            script.src = "http://127.0.0.1:3000/user?name=lily&callback=fn&_t=" + Date.now();
+
+            //插入页面时候，script就会执行
+            document.body.appendChild(script);
+        }
+    </script>
+
+
+</body>
+
+</html>
