@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        const oBox = document.querySelector("#box");
+
+        //功能函数
+        function move(e) {
+            console.log(Date.now());
+            console.log(this); //应该是指向oBox
+            console.log(e) //
+        }
+
+        const result = debounce(move, 200);
+
+        //当我最后一次移动完成之后 200毫秒后再执行
+        oBox.onmousemove = result;
+
+        function debounce(fn, time) {
+            let timerID = null;
+            return function () {
+                //每次move一执行 就要重新触发 重新计时 所以需要清除计时器
+                clearTimeout(timerID);
+                const arg = arguments;
+                //重新设置时间
+                timerID = setTimeout(() => {
+                    fn.call(this, arg[0]);
+                }, 200)
+            }
+        }
+    </script>
+</body>
+
+</html>
