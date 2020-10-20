@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <button id="btn">发送</button>
+    <script>
+        const oBtn = document.getElementById("btn");
+        oBtn.onclick = function () {
+            axios({
+                method: 'get',
+                url: 'http://127.0.0.1:3000/user',
+                params: {
+                    firsth: '111',
+                    lastName: '222'
+                }
+            }).then((data) => {
+                console.log(data);
+            })
+        }
+    </script>
+</body>
+
+</html>
