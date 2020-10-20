@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<title>三级联动</title>
+</head>
+
+<body>
+
+	<select id="province">
+		<option>请选择省份</option>
+	</select> 省
+
+	<select id="city">
+		<option>请选择市</option>
+	</select> 市
+
+	<select id="county">
+		<option>请选择区(县)</option>
+	</select> 区(县)
+
+
+
+	<script type="text/javascript" src="./js/jquery-1.12.4.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			//刚进入页面请求省份
+			const xhr = new XMLHttpRequest();
+			xhr.open("GET", "/province", true);
+			xhr.send();
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState === 4 && (xhr.status > 199 && xhr.status < 300)) {
+					const provinceData = JSON.parse(xhr.responseText);
+					console.log(provinceData);
+
+					if (provinceData.status === 0) {
+						$("#province").append(provinceData.data.reduce((p, c) => {
+							return p + `<option value="${c.province}">${c.name}</option>`;
+						}, ''))
+					}
+				}
+			}
+
+
+			//当省份被选择的时候 就去加载市
+			$("#province").change(function () {
+				//获取当前点击的是哪一个省份
+				const province = $(this).val();
+				console.log(province)
+
+				//当省份选择完成 则开始加载市
+				$.get("/city", {
+					province
+				}, (mes) => {
+					if (mes.status === 0) {
+						console.log(mes);
+						$("#city").append(mes.data.reduce((p, c) => {
+							return p + `<option value="${c.city}">${c.name}</option>`;
+						}, ''))
+					}
+
+				})
+
+			})
+
+
+
+			//当市被选择的时候 就去加载县区
+			$("#city").change(function () {
+				//获取当前点击的是哪一个省份
+				const province = $("#province").val();
+				const city = $(this).val();
+
+				//当省份选择完成 则开始加载市
+				$.get("/county", {
+					province,
+					city
+				}, (mes) => {
+					if (mes.status === 0) {
+						console.log(mes);
+						$("#county").append(mes.data.reduce((p, c) => {
+							return p + `<option>${c.name}</option>`;
+						}, ''))
+					}
+
+				})
+
+			})
+
+		})
+	</script>
+</body>
+
+</html>
