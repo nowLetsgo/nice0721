@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>我是03</h1>
+    <script>
+        //当其他同源的页面修改了localStorage的时候,会自动触发其他页面的stroage事件
+        //从而让其他页面随之更新
+        window.onstorage = function (data) {
+            console.log(data)
+            console.log(data.oldValue) //改变之前的值
+            console.log(data.newValue) //改变之后的值
+        }
+    </script>
+</body>
+
+</html>

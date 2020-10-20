@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        const oBox = document.querySelector("#box");
+
+        //功能函数
+        function move(e) {
+            console.log(Date.now());
+            console.log(this); //应该是指向oBox
+            console.log(e) //
+        }
+
+        const result = throttle(move, 200);
+        //当box事件触发的时候 会走看门狗
+
+        oBox.onmousemove = result;
+
+        //高阶函数
+        //封装一个节流函数,参数:需要节流的功能函数  是每次功能函数调用所间隔的时间
+        function throttle(fn, time) {
+            //进来以后判断最新的时间和上一次访问的时间 间隔是否有200ms  
+            //如果有 则执行move函数  否则直接return
+
+            //第一次进来没有上一次的时间,并且第一次一定是要执行的
+            //所以直接给第一个进来设置一个上一次的默认时间是0
+            let lastTime = 0;
+
+            return function () {
+                //获取当前进入的时间
+                let nowTime = Date.now();
+
+                if (nowTime - lastTime < time) {
+                    return;
+                }
+
+                //如果时间超出 则直接调用fn
+                //当前return的函数this指向是box 所以需要把fn的this指向当前的this
+                //当前的return的才是真正的事件函数,所以当前return的函数拥有event,但是fn没有
+                //需要把当前return的函数的参数 给到fn上
+                fn.call(this, arguments[0]);
+
+                //把lastTime更新一下 方便下次判断
+                lastTime = nowTime;
+            }
+
+        }
+    </script>
+</body>
+
+</html>
